@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>لعبة الهروب الصحية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🚪 لعبة الهروب الصحية</h1>
+
+<div id="game">
+
+    <div id="question">ما هي السمنة؟</div>
+
+    <div id="choices">
+        <button onclick="checkAnswer(0)">زيادة طبيعية في الطول</button>
+        <button onclick="checkAnswer(1)">تراكم الدهون بشكل مفرط</button>
+        <button onclick="checkAnswer(2)">نقص في الوزن</button>
+    </div>
+
+    <p id="feedback"></p>
+
+    <button id="nextBtn" onclick="nextLevel()" style="display:none;">
+        🚪 فتح الباب للمرحلة التالية
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
