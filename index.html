@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>لعبة الهروب الصحية</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>لعبة الهروب الصحية</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🚪 لعبة الهروب الصحية</h1>
+<!-- 🎬 فيديو البداية -->
+<div id="intro">
+    <video id="introVideo" width="70%" autoplay muted>
+        <source src="assets/videos/intro.mp4" type="video/mp4">
+    </video>
 
-<div id="game">
+    <br><br>
 
-    <div id="question">ما هي السمنة؟</div>
-
-    <div id="choices">
-        <button onclick="checkAnswer(0)">زيادة طبيعية في الطول</button>
-        <button onclick="checkAnswer(1)">تراكم الدهون بشكل مفرط</button>
-        <button onclick="checkAnswer(2)">نقص في الوزن</button>
-    </div>
-
-    <p id="feedback"></p>
-
-    <button id="nextBtn" onclick="nextLevel()" style="display:none;">
-        🚪 فتح الباب للمرحلة التالية
+    <button id="startBtn" onclick="startGame()" style="display:none;">
+        🚀 ابدأ اللعبة
     </button>
-
 </div>
+
+<!-- 🎮 اللعبة -->
+<div id="game" style="display:none;"></div>
 
 <script src="script.js"></script>
 </body>
