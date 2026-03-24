@@ -70,6 +70,7 @@ const levels = [
 
 {
 question:"أيٌّ من العادات التالية يسبب زيادة في الوزن على المدى الطويل؟",
+image:"assets/images/q1.png",
 feedback:"لأن السعرات الحرارية في المشروبات السكرية تتراكم دون الإحساس بالشبع.",
 answers: shuffle([
 {text:"تناول وجبة كبيرة مرة أسبوعياً", correct:false},
@@ -81,6 +82,7 @@ answers: shuffle([
 
 {
 question:"لماذا قد يزداد وزن مراهق أسرع من صديقه رغم تناولهما نفس الكمية؟",
+image:"assets/images/q2.png",
 feedback:"بسبب اختلاف معدل الأيض وقدرة الجسم على تخزين الدهون.",
 answers: shuffle([
 {text:"بسبب نوع الملابس", correct:false},
@@ -92,6 +94,7 @@ answers: shuffle([
 
 {
 question:"أيٌّ من الخيارات التالية يُعدّ خداعاً صحياً؟",
+image:"assets/images/q3.png",
 feedback:"لأن العصائر الطبيعية تحتوي على كميات عالية من السكر عند الإفراط فيها.",
 answers: shuffle([
 {text:"عصير البرتقال الطبيعي بكثرة", correct:true},
@@ -103,6 +106,7 @@ answers: shuffle([
 
 {
 question:"لماذا قد يؤدي قلة النوم إلى زيادة الوزن؟",
+image:"assets/images/q4.png",
 feedback:"لأنه يزيد هرمونات الجوع ويقلل الشعور بالشبع.",
 answers: shuffle([
 {text:"لأنه يمنع الأكل", correct:false},
@@ -114,6 +118,7 @@ answers: shuffle([
 
 {
 question:"أي نمط حياة يُعد أكثر خطراً للإصابة بالسمنة؟",
+image:"assets/images/q5.png",
 feedback:"لأن الجلوس الطويل يؤثر سلباً حتى مع وجود نشاط رياضي.",
 answers: shuffle([
 {text:"ممارسة الرياضة ساعة ثم الجلوس طوال اليوم", correct:true},
@@ -125,6 +130,7 @@ answers: shuffle([
 
 {
 question:"هل ممارسة الرياضة بعد تناول وجبة سريعة تلغي السعرات؟",
+image:"assets/images/q6.png",
 feedback:"الرياضة تساعد ولكنها لا تلغي السعرات بالكامل.",
 answers: shuffle([
 {text:"نعم تماماً", correct:false},
@@ -136,6 +142,7 @@ answers: shuffle([
 
 {
 question:"لماذا يختلف الناس في سرعة فقدان الوزن؟",
+image:"assets/images/q7.png",
 answers: shuffle([
 {text:"الحظ", correct:false},
 {text:"الجينات والعادات", correct:true},
@@ -146,6 +153,7 @@ answers: shuffle([
 
 {
 question:"أي سلوك يساعد أكثر في تقليل السمنة؟",
+image:"assets/images/q8.png",
 answers: shuffle([
 {text:"الحرمان من الأطعمة المفضلة", correct:false},
 {text:"التوازن واعتدال الكميات", correct:true},
@@ -156,6 +164,7 @@ answers: shuffle([
 
 {
 question:"متى يكون الجوع حقيقياً؟",
+image:"assets/images/q9.png",
 answers: shuffle([
 {text:"عند اشتهاء نوع معين من الطعام", correct:false},
 {text:"عند تقبل أي طعام متاح", correct:true},
@@ -166,6 +175,7 @@ answers: shuffle([
 
 {
 question:"ما الخيار الأفضل للمراهقين؟",
+image:"assets/images/q10.png",
 answers: shuffle([
 {text:"اتباع حمية قاسية", correct:false},
 {text:"تقليل الطعام مع زيادة الحركة", correct:true},
@@ -176,6 +186,7 @@ answers: shuffle([
 
 {
 question:"لماذا تسبب الوجبات السريعة زيادة الوزن؟",
+image:"assets/images/q11.png",
 answers: shuffle([
 {text:"لأنها لذيذة", correct:false},
 {text:"لأنها عالية السعرات وقليلة الشبع", correct:true},
@@ -186,6 +197,7 @@ answers: shuffle([
 
 {
 question:"أيٌّ من العبارات التالية خاطئة؟",
+image:"assets/images/q12.png",
 feedback:"السمنة لها أسباب متعددة وليست بسبب الكسل فقط.",
 answers: shuffle([
 {text:"الرياضة تساعد", correct:false},
@@ -197,6 +209,7 @@ answers: shuffle([
 
 {
 question:"أي نشاط يحرق سعرات حرارية أكثر؟",
+image:"assets/images/q13.png",
 answers: shuffle([
 {text:"الجلوس", correct:false},
 {text:"النوم", correct:false},
@@ -207,6 +220,7 @@ answers: shuffle([
 
 {
 question:"ما أفضل خطوة أولى لتحسين الصحة؟",
+image:"assets/images/q14.png",
 answers: shuffle([
 {text:"اتباع حمية قاسية", correct:false},
 {text:"زيادة الحركة اليومية", correct:true},
@@ -217,6 +231,7 @@ answers: shuffle([
 
 {
 question:"أي عامل نفسي قد يسبب زيادة الوزن؟",
+image:"assets/images/q15.png",
 feedback:"الأكل العاطفي مرتبط بالتوتر.",
 answers: shuffle([
 {text:"التوتر", correct:true},
@@ -242,24 +257,32 @@ function loadLevel() {
     let progress = ((currentLevel+1)/levels.length)*100;
 
     document.getElementById("game").innerHTML = `
-    <div id="homeBtn" onclick="goHome()">🏠</div>
+<div id="homeBtn" onclick="goHome()">🏠</div>
 
-    <div id="progressBar">
-        <div id="progressFill" style="width:${progress}%"></div>
-    </div>
+<div id="progressText">
+    المرحلة ${currentLevel + 1} / ${levels.length}
+</div>
 
-    <div id="keys">🔑 ${keys}</div>
+<div id="progressBar">
+    <div id="progressFill" style="width:${progress}%"></div>
+</div>
 
-    <h2>🚪 الغرفة ${currentLevel + 1}</h2>
 
-    <div id="door"></div>
 
-    <p>${level.question}</p>
+<div class="question-box">
 
-    <div id="choices"></div>
+    <img src="${level.image}" class="question-image">
 
-    <p id="feedback"></p>
-    `;
+    <p class="question-text">${level.question}</p>
+
+</div>
+
+<div id="choices"></div>
+
+<p id="feedback"></p>
+
+<button id="nextBtn">➜</button>
+`;
 
     let choicesDiv = document.getElementById("choices");
 
@@ -310,15 +333,22 @@ document.getElementById("feedback").innerText =
         setTimeout(()=>star.remove(),1000);
     }
 
-    setTimeout(()=>{
-        currentLevel++;
+    const nextBtn = document.getElementById("nextBtn");
 
-        if(currentLevel < levels.length){
-            loadLevel();
-        } else {
-            winGame();
-        }
-    },1000);
+nextBtn.classList.add("show");
+
+nextBtn.onclick = () => {
+
+    playSound(clickSound);
+
+    currentLevel++;
+
+    if(currentLevel < levels.length){
+        animateTransition(loadLevel);
+    } else {
+        winGame();
+    }
+};
 }
 
 // ❌ خطأ
@@ -364,4 +394,21 @@ function restartGame(){
     currentLevel = 0;
     keys = 0;
     loadLevel();
+}
+function animateTransition(callback){
+
+    const game = document.getElementById("game");
+
+    game.classList.add("fade-out");
+
+    setTimeout(()=>{
+        callback();
+        game.classList.remove("fade-out");
+        game.classList.add("fade-in");
+
+        setTimeout(()=>{
+            game.classList.remove("fade-in");
+        },300);
+
+    },300);
 }
