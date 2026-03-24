@@ -1,6 +1,39 @@
 let keys = 0;
 let currentLevel = 0;
-const video = document.getElementById("introVideo");
+window.addEventListener("DOMContentLoaded", () => {
+
+    const video = document.getElementById("introVideo");
+    const startBtn = document.getElementById("startBtn");
+
+    // تشغيل الصوت بعد أول نقرة
+
+
+    // عند انتهاء الفيديو يظهر زر البداية
+    video.onended = () => {
+        startBtn.style.display = "block";
+    };
+
+});
+function startVideo(){
+
+    const video = document.getElementById("introVideo");
+    const overlay = document.getElementById("playOverlay");
+    const startBtn = document.getElementById("startBtn");
+
+    video.muted = false; // مهم
+
+    video.play().then(() => {
+
+        overlay.style.display = "none";
+
+        video.onended = () => {
+            startBtn.style.display = "block";
+        };
+
+    }).catch(() => {
+        alert("اضغط مرة أخرى لتشغيل الصوت");
+    });
+}
 
 // أول نقرة في الصفحة تفعل الصوت
 document.body.addEventListener("click", () => {
@@ -311,7 +344,7 @@ function winGame(){
     document.getElementById("game").innerHTML = `
         <h1>🏆 مبروك!</h1>
         <p>جمعت ${keys} مفاتيح!</p>
-        <button onclick="restartGame()">🔁 العب مرة أخرى</button>
+        <button class="restartBtn" onclick="restartGame()">↻</button>
     `;
 }
 

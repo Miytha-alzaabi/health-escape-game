@@ -10,19 +10,28 @@
 
 <!-- 🎬 فيديو البداية -->
 <div id="intro">
-    <video id="introVideo" width="70%" autoplay muted>
+
+    <div class="device">
+
+        <div class="screen">
+
+    <video id="introVideo" playsinline>
         <source src="assets/videos/intro.mp4" type="video/mp4">
     </video>
 
-    <br><br>
+    <!-- زر التشغيل داخل الشاشة -->
+    <div id="playOverlay" onclick="startVideo()">▶</div>
 
-    <button id="startBtn" onclick="startGame()" style="display:none;">
-        🚀 ابدأ اللعبة
-    </button>
+</div>
+
+    </div>
+
+    <button id="startBtn" onclick="startGame()">▶</button>
+
 </div>
 
 <!-- 🎮 اللعبة -->
-<div id="game" style="display:none;"></div>
+<div id="game"></div>
 
 <script src="script.js"></script>
 </body>

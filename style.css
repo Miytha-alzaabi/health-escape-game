@@ -139,3 +139,194 @@ button:active {
     #game { width: 95%; }
     button { width: 95%; font-size: 16px; }
 }
+
+/* خط السؤال */
+#game p {
+    font-size: 24px; /* تكبير الخط */
+    text-align: center; /* توسيط النص */
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* الزر الدائري لبداية اللعبة */
+#startBtn {
+    margin-top: 25px;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+    border: none;
+
+    font-size: 40px;
+    color: white;
+
+    background: linear-gradient(145deg, #00c853, #00e676);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    display: none; /* يظهر بعد الفيديو */
+}
+
+#startBtn:hover {
+    transform: scale(1.1);
+}
+
+#startBtn:active {
+    transform: scale(0.95);
+}
+
+/* زر إعادة المحاولة بشكل سهم مستدير */
+#game button.restartBtn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 28px;
+    background: linear-gradient(145deg, #00e676, #00c853);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #00c853, 0 10px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+#game button.restartBtn:hover {
+    transform: scale(1.1);
+}
+
+#game button.restartBtn:active {
+    transform: scale(0.95);
+}
+
+/* الأزرار العادية للاختيارات */
+#choices button {
+    margin: 10px;
+    padding: 14px 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 25px;
+    font-size: 20px; /* تكبير الخط */
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* نص التغذية الراجعة */
+#feedback {
+    font-size: 22px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* شريط التقدم */
+#progressBar {
+    width: 100%;
+    height: 14px;
+    background: #eee;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#progressFill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #00e676, #00c853);
+    border-radius: 10px;
+    transition: 0.4s;
+}
+.restartBtn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 30px;
+    background: linear-gradient(145deg, #2979ff, #2962ff);
+}
+#intro {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.device {
+    width: 520px;
+    max-width: 90%;
+
+     position: relative;
+
+    padding: 20px;
+
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    border-radius: 25px;
+
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.5),
+        inset 0 0 10px rgba(255,255,255,0.05);
+}
+.screen {
+    width: 100%;
+    height: 300px;
+
+    background: black;
+    border-radius: 15px;
+
+    overflow: hidden;
+    position: relative;
+     box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+#introVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.device::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #111;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#playOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+
+    color: white;
+    font-size: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#playOverlay:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+#playOverlay {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
