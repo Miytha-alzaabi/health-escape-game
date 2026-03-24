@@ -1,76 +1,334 @@
+let keys = 0;
 let currentLevel = 0;
+const video = document.getElementById("introVideo");
 
+// أول نقرة في الصفحة تفعل الصوت
+document.body.addEventListener("click", () => {
+    video.muted = false;
+}, { once: true });
+
+// 🎬 الفيديو
+const introVideo = document.getElementById("introVideo");
+const startBtn = document.getElementById("startBtn");
+
+introVideo.onended = () => {
+    startBtn.style.display = "block";
+};
+
+// 🔊 الأصوات
+const clickSound = new Audio("assets/sounds/click.mp3");
+const correctSound = new Audio("assets/sounds/correct.mp3");
+const wrongSound = new Audio("assets/sounds/wrong.mp3");
+const clapSound = new Audio("assets/sounds/clap.mp3");
+
+// تشغيل الصوت
+function playSound(sound){
+    sound.currentTime = 0;
+    sound.play().catch(()=>{});
+}
+
+// 🔀 خلط
+function shuffle(arr) {
+    return arr.sort(() => Math.random() - 0.5);
+}
+
+// 🎮 الأسئلة
 const levels = [
-    {
-        question: "ما هي السمنة لدى المراهقين؟",
-        answers: [
-            "زيادة طبيعية في الوزن",
-            "تراكم الدهون بشكل مفرط",
-            "نقص في الوزن"
-        ],
-        correct: 1
-    },
-    {
-        question: "ما سبب زيادة السمنة؟",
-        answers: [
-            "النشاط البدني",
-            "تناول الوجبات السريعة",
-            "شرب الماء"
-        ],
-        correct: 1
-    },
-    {
-        question: "ما أحد مخاطر السمنة؟",
-        answers: [
-            "القوة البدنية",
-            "السكري",
-            "زيادة التركيز"
-        ],
-        correct: 1
-    }
+
+{
+question:"أيٌّ من العادات التالية يسبب زيادة في الوزن على المدى الطويل؟",
+feedback:"لأن السعرات الحرارية في المشروبات السكرية تتراكم دون الإحساس بالشبع.",
+answers: shuffle([
+{text:"تناول وجبة كبيرة مرة أسبوعياً", correct:false},
+{text:"المشي لمدة 10 دقائق يومياً", correct:false},
+{text:"النوم 8 ساعات يومياً", correct:false},
+{text:"شرب المشروبات الغازية يومياً", correct:true}
+])
+},
+
+{
+question:"لماذا قد يزداد وزن مراهق أسرع من صديقه رغم تناولهما نفس الكمية؟",
+feedback:"بسبب اختلاف معدل الأيض وقدرة الجسم على تخزين الدهون.",
+answers: shuffle([
+{text:"بسبب نوع الملابس", correct:false},
+{text:"لأن جسمه يخزن الدهون بشكل أكبر", correct:true},
+{text:"بسبب قلة شرب الماء", correct:false},
+{text:"بسبب الحظ", correct:false}
+])
+},
+
+{
+question:"أيٌّ من الخيارات التالية يُعدّ خداعاً صحياً؟",
+feedback:"لأن العصائر الطبيعية تحتوي على كميات عالية من السكر عند الإفراط فيها.",
+answers: shuffle([
+{text:"عصير البرتقال الطبيعي بكثرة", correct:true},
+{text:"الماء", correct:false},
+{text:"تفاحة", correct:false},
+{text:"الخضروات", correct:false}
+])
+},
+
+{
+question:"لماذا قد يؤدي قلة النوم إلى زيادة الوزن؟",
+feedback:"لأنه يزيد هرمونات الجوع ويقلل الشعور بالشبع.",
+answers: shuffle([
+{text:"لأنه يمنع الأكل", correct:false},
+{text:"لأنه يغير هرمونات الجوع", correct:true},
+{text:"لأنه يقلل الحركة فقط", correct:false},
+{text:"لا علاقة له", correct:false}
+])
+},
+
+{
+question:"أي نمط حياة يُعد أكثر خطراً للإصابة بالسمنة؟",
+feedback:"لأن الجلوس الطويل يؤثر سلباً حتى مع وجود نشاط رياضي.",
+answers: shuffle([
+{text:"ممارسة الرياضة ساعة ثم الجلوس طوال اليوم", correct:true},
+{text:"المشي طوال اليوم", correct:false},
+{text:"النوم مبكراً", correct:false},
+{text:"شرب الماء بكثرة", correct:false}
+])
+},
+
+{
+question:"هل ممارسة الرياضة بعد تناول وجبة سريعة تلغي السعرات؟",
+feedback:"الرياضة تساعد ولكنها لا تلغي السعرات بالكامل.",
+answers: shuffle([
+{text:"نعم تماماً", correct:false},
+{text:"لا، تقلل جزءاً فقط", correct:true},
+{text:"يعتمد على الوقت", correct:false},
+{text:"نعم مع شرب الماء", correct:false}
+])
+},
+
+{
+question:"لماذا يختلف الناس في سرعة فقدان الوزن؟",
+answers: shuffle([
+{text:"الحظ", correct:false},
+{text:"الجينات والعادات", correct:true},
+{text:"الطول", correct:false},
+{text:"لون البشرة", correct:false}
+])
+},
+
+{
+question:"أي سلوك يساعد أكثر في تقليل السمنة؟",
+answers: shuffle([
+{text:"الحرمان من الأطعمة المفضلة", correct:false},
+{text:"التوازن واعتدال الكميات", correct:true},
+{text:"الصيام الطويل", correct:false},
+{text:"تناول وجبة واحدة يومياً", correct:false}
+])
+},
+
+{
+question:"متى يكون الجوع حقيقياً؟",
+answers: shuffle([
+{text:"عند اشتهاء نوع معين من الطعام", correct:false},
+{text:"عند تقبل أي طعام متاح", correct:true},
+{text:"عند الشعور بالملل", correct:false},
+{text:"عند مشاهدة إعلان", correct:false}
+])
+},
+
+{
+question:"ما الخيار الأفضل للمراهقين؟",
+answers: shuffle([
+{text:"اتباع حمية قاسية", correct:false},
+{text:"تقليل الطعام مع زيادة الحركة", correct:true},
+{text:"منع الكربوهيدرات تماماً", correct:false},
+{text:"تناول وجبة واحدة فقط", correct:false}
+])
+},
+
+{
+question:"لماذا تسبب الوجبات السريعة زيادة الوزن؟",
+answers: shuffle([
+{text:"لأنها لذيذة", correct:false},
+{text:"لأنها عالية السعرات وقليلة الشبع", correct:true},
+{text:"لأنها غالية", correct:false},
+{text:"لأنها حارة", correct:false}
+])
+},
+
+{
+question:"أيٌّ من العبارات التالية خاطئة؟",
+feedback:"السمنة لها أسباب متعددة وليست بسبب الكسل فقط.",
+answers: shuffle([
+{text:"الرياضة تساعد", correct:false},
+{text:"النوم مهم", correct:false},
+{text:"السمنة سببها الكسل فقط", correct:true},
+{text:"التغذية مهمة", correct:false}
+])
+},
+
+{
+question:"أي نشاط يحرق سعرات حرارية أكثر؟",
+answers: shuffle([
+{text:"الجلوس", correct:false},
+{text:"النوم", correct:false},
+{text:"الوقوف والحركة", correct:true},
+{text:"استخدام الهاتف", correct:false}
+])
+},
+
+{
+question:"ما أفضل خطوة أولى لتحسين الصحة؟",
+answers: shuffle([
+{text:"اتباع حمية قاسية", correct:false},
+{text:"زيادة الحركة اليومية", correct:true},
+{text:"إيقاف الأكل", correct:false},
+{text:"تناول أدوية للتخسيس", correct:false}
+])
+},
+
+{
+question:"أي عامل نفسي قد يسبب زيادة الوزن؟",
+feedback:"الأكل العاطفي مرتبط بالتوتر.",
+answers: shuffle([
+{text:"التوتر", correct:true},
+{text:"السعادة", correct:false},
+{text:"النوم", correct:false},
+{text:"الدراسة", correct:false}
+])
+}
+
 ];
 
-// أصوات
-const correctSound = new Audio("correct.mp3");
-const wrongSound = new Audio("wrong.mp3");
-const clapSound = new Audio("clap.mp3");
+// ▶️ بدء اللعبة
+function startGame() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    loadLevel();
+}
 
+// تحميل السؤال
 function loadLevel() {
+
     let level = levels[currentLevel];
+    let progress = ((currentLevel+1)/levels.length)*100;
 
-    document.getElementById("question").innerText = level.question;
+    document.getElementById("game").innerHTML = `
+    <div id="homeBtn" onclick="goHome()">🏠</div>
 
-    let buttons = document.querySelectorAll("#choices button");
-    buttons.forEach((btn, i) => {
-        btn.innerText = level.answers[i];
+    <div id="progressBar">
+        <div id="progressFill" style="width:${progress}%"></div>
+    </div>
+
+    <div id="keys">🔑 ${keys}</div>
+
+    <h2>🚪 الغرفة ${currentLevel + 1}</h2>
+
+    <div id="door"></div>
+
+    <p>${level.question}</p>
+
+    <div id="choices"></div>
+
+    <p id="feedback"></p>
+    `;
+
+    let choicesDiv = document.getElementById("choices");
+
+    level.answers.forEach(ans => {
+
+        let btn = document.createElement("button");
+        btn.innerText = ans.text;
+
+        btn.onclick = () => {
+            playSound(clickSound);
+
+            btn.style.transform = "scale(0.95)";
+
+            setTimeout(()=>{
+                btn.style.transform = "";
+
+                if (ans.correct) success();
+                else fail();
+            },150);
+        };
+
+        choicesDiv.appendChild(btn);
     });
-
-    document.getElementById("feedback").innerText = "";
-    document.getElementById("nextBtn").style.display = "none";
 }
 
-function checkAnswer(choice) {
+// ✅ نجاح
+function success(){
+
+    playSound(correctSound);
+
+    keys++;
+
     let level = levels[currentLevel];
 
-    if (choice === level.correct) {
-        correctSound.play();
-        clapSound.play();
-        document.getElementById("feedback").innerText = "🎉 أحسنت! إجابة صحيحة";
-        document.getElementById("nextBtn").style.display = "block";
-    } else {
-        wrongSound.play();
-        document.getElementById("feedback").innerText = "❌ حاول مرة أخرى";
+document.getElementById("feedback").innerText =
+"✅ إجابة صحيحة! " + (level.feedback || "");
+
+    // ⭐ نجوم
+    for(let i=0;i<5;i++){
+        let star=document.createElement("div");
+        star.innerText="⭐";
+        star.className="star";
+        star.style.left=Math.random()*80+"%";
+        star.style.top="60%";
+
+        document.body.appendChild(star);
+
+        setTimeout(()=>star.remove(),1000);
     }
+
+    setTimeout(()=>{
+        currentLevel++;
+
+        if(currentLevel < levels.length){
+            loadLevel();
+        } else {
+            winGame();
+        }
+    },1000);
 }
 
-function nextLevel() {
-    currentLevel++;
+// ❌ خطأ
+function fail(){
+    playSound(wrongSound);
 
-    if (currentLevel < levels.length) {
-        loadLevel();
-    } else {
-        document.getElementById("game").innerHTML = "🏆 مبروك! خرجت من جميع الغرف!";
-    }
+    const game = document.getElementById("game");
+
+    game.classList.add("shake");
+
+    setTimeout(()=>{
+        game.classList.remove("shake");
+    },400);
+
+    document.getElementById("feedback").innerText="❌ حاول مرة أخرى";
 }
 
-loadLevel();
+// 🎉 الفوز
+function winGame(){
+
+    playSound(clapSound);
+
+    document.getElementById("game").innerHTML = `
+        <h1>🏆 مبروك!</h1>
+        <p>جمعت ${keys} مفاتيح!</p>
+        <button onclick="restartGame()">🔁 العب مرة أخرى</button>
+    `;
+}
+
+// 🏠 رجوع
+function goHome(){
+    playSound(clickSound);
+
+    currentLevel = 0;
+    keys = 0;
+
+    document.getElementById("game").style.display = "none";
+    document.getElementById("intro").style.display = "block";
+}
+
+// 🔁 إعادة
+function restartGame(){
+    currentLevel = 0;
+    keys = 0;
+    loadLevel();
+}
