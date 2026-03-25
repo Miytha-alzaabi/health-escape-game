@@ -377,9 +377,27 @@ function winGame(){
     playSound("assets/sounds/clap.mp3");
 
     document.getElementById("game").innerHTML = `
-        <h1>🏆 مبروك!</h1>
-        <p>جمعت ${keys} مفاتيح!</p>
-        <button class="restartBtn" onclick="restartGame()">↻</button>
+        <h1>🏆 أحسنت!</h1>
+
+    <div class="tablet-frame">
+
+        <video id="endVideo" class="tablet-video" controls>
+            <source src="assets/videos/end.mp4" type="video/mp4">
+        </video>
+
+        <!-- زر تشغيل -->
+        <div class="play-overlay" onclick="startEndVideo()">
+            ▶
+        </div>
+
+    </div>
+
+<p class="end-text">
+🎉 رحلتك نحو الصحة بدأت الآن!
+</p>
+
+
+        <button class="restart-btn" onclick="restartGame()">↻</button>
     `;
 }
 
@@ -416,4 +434,17 @@ function animateTransition(callback){
         },300);
 
     },300);
+}
+function startEndVideo(){
+
+    const video = document.getElementById("endVideo");
+    const overlay = document.querySelector(".play-overlay");
+
+    video.muted = false;
+
+    video.play().then(()=>{
+        overlay.style.display = "none";
+    }).catch(()=>{
+        alert("اضغط مرة أخرى لتشغيل الصوت");
+    });
 }
