@@ -55,9 +55,13 @@ const wrongSound = new Audio("assets/sounds/wrong.mp3");
 const clapSound = new Audio("assets/sounds/clap.mp3");
 
 // تشغيل الصوت
-function playSound(sound){
-    sound.currentTime = 0;
-    sound.play().catch(()=>{});
+function playSound(src){
+
+    const sound = new Audio(src);
+
+    sound.volume = 1;
+
+    sound.play().catch(() => {});
 }
 
 // 🔀 خلط
@@ -257,6 +261,7 @@ function loadLevel() {
     let progress = ((currentLevel+1)/levels.length)*100;
 
     document.getElementById("game").innerHTML = `
+    
 <div id="homeBtn" onclick="goHome()">🏠</div>
 
 <div id="progressText">
@@ -292,7 +297,7 @@ function loadLevel() {
         btn.innerText = ans.text;
 
         btn.onclick = () => {
-            playSound(clickSound);
+            playSound("assets/sounds/click.mp3");
 
             btn.style.transform = "scale(0.95)";
 
@@ -311,7 +316,7 @@ function loadLevel() {
 // ✅ نجاح
 function success(){
 
-    playSound(correctSound);
+    playSound("assets/sounds/correct.mp3");
 
     keys++;
 
@@ -339,7 +344,7 @@ nextBtn.classList.add("show");
 
 nextBtn.onclick = () => {
 
-    playSound(clickSound);
+    playSound("assets/sounds/click.mp3");
 
     currentLevel++;
 
@@ -353,7 +358,7 @@ nextBtn.onclick = () => {
 
 // ❌ خطأ
 function fail(){
-    playSound(wrongSound);
+    playSound("assets/sounds/wrong.mp3");
 
     const game = document.getElementById("game");
 
@@ -369,7 +374,7 @@ function fail(){
 // 🎉 الفوز
 function winGame(){
 
-    playSound(clapSound);
+    playSound("assets/sounds/clap.mp3");
 
     document.getElementById("game").innerHTML = `
         <h1>🏆 مبروك!</h1>
@@ -380,7 +385,7 @@ function winGame(){
 
 // 🏠 رجوع
 function goHome(){
-    playSound(clickSound);
+    playSound("assets/sounds/click.mp3");
 
     currentLevel = 0;
     keys = 0;
