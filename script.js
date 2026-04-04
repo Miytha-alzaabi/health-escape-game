@@ -448,3 +448,26 @@ function startEndVideo(){
         alert("اضغط مرة أخرى لتشغيل الصوت");
     });
 }
+function showCredits(){
+
+    document.getElementById("intro");
+
+     intro.innerHTML = `
+
+    <h1>🎬 فريق العمل</h1>
+
+    <div class="credits-box">
+
+        <p> منيرة الفزارية</p>
+        <p> مريم المنصورية</p>
+        <p>تقوى العدوية </p>
+        <p> فاطمة اللمكية</p>
+
+    </div>
+
+    <button onclick="location.reload()">⬅ رجوع</button>
+    `;
+}
+function goBackIntro(){
+    location.reload();
+}
